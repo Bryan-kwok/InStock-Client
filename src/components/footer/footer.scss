@@ -7,6 +7,13 @@
 footer{
     display: flex;
     justify-content: center;
-    color: $color-cloud;
-    padding: 1.5rem;
+    min-height: 100%;
+    align-content: flex-end;
+    color: $color-slate;
+    padding: 2.5rem;
+    background-color: $color-Lgrey;
+
+    @include desktop{
+        padding:3rem;
+    }
 }
