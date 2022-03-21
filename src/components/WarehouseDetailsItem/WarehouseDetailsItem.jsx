@@ -3,6 +3,7 @@ import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronRight from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
+import '../WarehouseDetailsItem/WarehouseDetailsItem.scss'
 
 class WarehouseDetailsitem extends Component {
   render() {
@@ -18,7 +19,7 @@ class WarehouseDetailsitem extends Component {
                   INVENTORY ITEM
                 </h4>
                 <p className="inventoryCard__left-product">
-                  <Link to={`/itemDetails/${id}`}>
+                  <Link className='warehouse__link' to={`/itemDetails/${id}`}>
                     {itemName}
                     <img
                       className="inventoryCard__left-productimg"

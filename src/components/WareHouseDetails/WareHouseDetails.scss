@@ -1,119 +1,113 @@
-@use '../../style/global' as *;
-@use '../../style/partial/color-var' as *;
-@use '../../style/partial/fonts' as *;
-@use '../../style/partial/mixin' as *;
+@use "../../style/global" as *;
+@use "../../style/partial/color-var" as *;
+@use "../../style/partial/fonts" as *;
+@use "../../style/partial/mixin" as *;
 
-.warehouseDetails{
+.warehouseDetails {
   box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
   background-color: $color-white;
   margin-inline: 1rem;
   border-radius: 4px;
-  &__header{
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1.75rem;
+    border-bottom: 1px solid $color-cloud;
+  }
+  &__back {
+    //width: 1rem;
+    //height: 1rem;
+  }
+  &__title {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 1.75rem;
+    font-family: "titillium-semi-bold";
+    line-height: 2.25rem;
+    margin-right: 4rem;
+  }
+  &__info {
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+    font-family: "titillium-semi-bold";
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    @include tablet {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+    }
+  }
+  &__address {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      border-right: 1px solid $color-cloud;
+      padding-right: 16.25rem;
+    }
+    &-title {
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    &-address {
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+      font-family: "titillium-regular";
+      color: $color-black;
+    }
+  }
+  &__contact {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    @include tablet {
+      padding-left: 2.5rem;
+    }
+    &-title {
+      font-family: "titillium-regular";
+      font-size: 0.6875rem;
+      line-height: 1rem;
+    }
+    &-name {
+      font-family: "titillium-regular";
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+    }
+    &-position {
+      font-family: "titillium-regular";
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+    }
+  }
+  &__right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-right: 3.4375rem;
+  }
+  &__left {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: column;
+    @include tablet {
+      display: flex;
+      flex-direction: row;
       align-items: center;
-      padding: 2rem 1.75rem;
-      border-bottom: 1px solid $color-cloud;
-
+      width: 70%;
+    }
   }
-  &__back{
-      //width: 1rem;
-      //height: 1rem;
-  }
-  &__title{
-      display: flex;
-      flex-wrap: nowrap;
-      font-size: 1.75rem;
-      font-family: 'titillium-semi-bold';
-      line-height: 2.25rem;
-      margin-right: 4rem;
-      
-  }
-  &__info{
-      padding-top: 1rem;
-      padding-left: 1.5rem;
-      font-family: 'titillium-semi-bold';
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      justify-content: space-between;
-      @include tablet{
-          display: flex;
-          flex-direction: row;
-      }
-
-  }
-  &__address{
-      display: flex;
-      flex-direction: column;
-      @include tablet{
-        border-right: 1px solid $color-cloud ;
-        padding-right: 16.25rem;
-      }
-      &-title{
-          font-size: 0.6875rem;
-          line-height: 1rem;
-          margin-bottom: 0.25rem;
-      }
-      &-address{
-          font-size: 0.8125rem;
-          line-height: 1.25rem;
-          font-family: 'titillium-regular';
-          color: $color-black;
-
-      }
-  }
-  &__contact{
-      padding-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 1rem;
-      @include tablet{
-          
-          padding-left: 2.5rem;
-      }
-      &-title{
-          font-family: 'titillium-regular';
-          font-size: 0.6875rem;
-          line-height: 1rem;
-      }
-      &-name{
-          font-family: 'titillium-regular';
-          font-size: 0.8125rem;
-          line-height: 1.25rem;
-      }
-      &-position{
-        font-family: 'titillium-regular';
-        font-size: 0.8125rem;
-        line-height: 1.25rem;
-
-      }
-
-  }
-  &__right{
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-      padding-right: 3.4375rem;
-  }
-  &__left{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 100%;
-      flex-direction: column;
-      @include tablet{
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          width: 70%;
-      }
-
-  }
-
 }
 
-.WarehouseDetails__wrapper{
-    background: linear-gradient(to bottom, $color-graphite 5%, $color-Lgrey 5%);
+.WarehouseDetails__wrapper {
+  background: linear-gradient(to bottom, $color-graphite 5%, $color-Lgrey 5%);
+  @include desktop {
+    padding: 0 5rem;
+  }
 }

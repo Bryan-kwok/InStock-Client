@@ -4,14 +4,14 @@ import WarehouseForm from '../warehouseForm/warehouseForm'
 
 class addwarehouse extends react.Component {
     
-     title= "Add New WareHouse";
-     btnText = "+ Add Warehouse";
+    title= "Add New WareHouse";
+    btnText = "+ Add Warehouse";
     render(){
-        const axiosURL = ""
-        const handleSubmit = (e) => {
+        
+        const handlePost = e => {
 
-            e.preventDefault(e);
-            axios.post(`${axiosURL}/warehouses`,{
+            console.log(e.target)
+            axios.post(`http://localhost:8080/warehouses/addWarehouse`,{
                 name: e.target.name.value,
                 address: e.target.address.value,
                 city: e.target.city.value,
@@ -21,13 +21,15 @@ class addwarehouse extends react.Component {
                 phone: e.target.phone.value,
                 email: e.target.email.value,
             })
-            .catch(err => alert("Error when processing form. Please fill all Feilds."))
+            .then((response) => {console.log(response) })
+            .catch(err => {alert("Error when processing form.");
+             console.log(err)})
 
         };
 
     return(
         <main className="add-warehouse">
-            <WarehouseForm title={this.title} btnText={this.btnText}/>
+            <WarehouseForm handleSubmit={handlePost} title={this.title} btnText={this.btnText}/>
         </main>
     )
     }

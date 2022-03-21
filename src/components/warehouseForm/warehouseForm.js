@@ -2,7 +2,7 @@ import react from "react"
 import "./warehouseForm.scss"
 import axios from "axios"
 import ArrowBack from '../../assets/icons/arrow_back-24px.svg';
-
+import {Link} from "react-router-dom";
 class warehouse extends react.Component {
 
     state = {
@@ -17,30 +17,32 @@ class warehouse extends react.Component {
     }
 
     render(){
-        const axiosURL = ""
-        const handleSubmit = (e) => {
+        
+        const validation = e => {
+            e.preventDefault();
+
             let nameValid = true;
-            if (e.target.name.value == ""){
+            if (e.target.name.value === ""){
                 nameValid = false;
             }
             let addressValid = true;
-            if(e.target.address.value == ""){
+            if(e.target.address.value === ""){
                 addressValid = false;
             }
             let cityValid = true;
-            if(e.target.city.value == ""){
+            if(e.target.city.value === ""){
                 cityValid = false;
             }
             let countryValid = true;
-            if(e.target.country.value == ""){
+            if(e.target.country.value === ""){
                 countryValid = false;
             }
             let contactValid = true;
-            if(e.target.contact.value == ""){
+            if(e.target.contact.value === ""){
                 contactValid = false;
             }
             let positionValid = true;
-            if(e.target.position.value == ""){
+            if(e.target.position.value === ""){
                 positionValid = false;
             }
             let phoneNumberValid = true;
@@ -51,8 +53,18 @@ class warehouse extends react.Component {
             if(!e.target.email.value.includes('@')){
                 emailValid= false;
             }
-            
-            this.setState({
+            const validation = [nameValid, addressValid, cityValid, countryValid, 
+                contactValid, positionValid, phoneNumberValid, emailValid ]
+
+            function CheckValidation(validation){
+                return validation === false
+            }
+            if (validation.find(CheckValidation) === undefined){
+                this.props.warehouseReq(e)
+                .catch(err => {alert("Error when processing form."); 
+                console.log(err)});
+            }
+                this.setState({
                 nameValid,
                 addressValid, 
                 cityValid,
@@ -63,19 +75,8 @@ class warehouse extends react.Component {
                 emailValid
             })
 
-            e.preventDefault(e);
-            axios.post(`${axiosURL}/warehouses`,{
-                name: e.target.name.value,
-                address: e.target.address.value,
-                city: e.target.city.value,
-                country: e.target.country.value,
-                contact: e.target.contact.value,
-                position: e.target.position.value,
-                phone: e.target.phone.value,
-                email: e.target.email.value,
-            })
-            .catch(err => alert("Error when processing form. Please fill all Feilds."))
-
+            
+            this.props.handleSubmit(e);
         };
 
     return(
@@ -83,51 +84,53 @@ class warehouse extends react.Component {
             <div className="add-warehouse__wrapper">
             <div className="add-warehouse__header"> 
             <div className="add-warehouse__header--back">
+             <Link to="/warehouses">  
             <img  src={ArrowBack} alt='arrow back icon'></img>   
+            </Link>
             </div>
             <div>
             <h1 className="add-warehouse__header--title">{this.props.title}</h1>
             </div>
             </div>  
             <div className="add-warehouse__container">
-                <form onSubmit={handleSubmit} className="add-warehouse__form">
+                <form onSubmit={validation} className="add-warehouse__form">
                         <div className="add-warehouse__form--container">
                         <div className="add-warehouse__form--section-1">
                     <h2 className="add-warehouse__form--title">Warehouse Details</h2>
                         <div className="add-warehouse__line">                   
                         <label className="add-warehouse__form--name-label"> Warehouse Name</label>
-                        <input className={`add-warehouse__form--input ${this.state.nameValid ? "" : "add-warehouse__error"}`} name="name" type="text" placeholder="Warehouse Name"></input>
+                        <input className={`add-warehouse__form--input ${this.state.nameValid ? "" : "add-warehouse__error"}`} name="name" type="text" placeholder="Warehouse Name" defaultValue={this.props.warehouseName ? this.props.warehouseName: ""} />
                         </div> 
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--address-label"> Street Address</label>
-                        <input className={`add-warehouse__form--input ${this.state.addressValid ? "" : "add-warehouse__error"}`} name="address" type="text" placeholder="Street Address"></input>
+                        <input className={`add-warehouse__form--input ${this.state.addressValid ? "" : "add-warehouse__error"}`} name="address" type="text" placeholder="Street Address" defaultValue={this.props.warehouseAddress ? this.props.warehouseAddress: ""}></input>
                         </div>
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--city-label"> City</label>
-                        <input className={`add-warehouse__form--input ${this.state.cityValid ? "" : "add-warehouse__error"}`} name="city" type="text" placeholder="City"></input>
+                        <input className={`add-warehouse__form--input ${this.state.cityValid ? "" : "add-warehouse__error"}`} name="city" type="text" placeholder="City" defaultValue={this.props.warehouseCity ? this.props.warehouseCity: ""}></input>
                         </div>
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--country-label"> Country</label>
-                        <input className={`add-warehouse__form--input ${this.state.countryValid ? "" : "add-warehouse__error"}`} name="country" type="text" placeholder="Country"></input>
+                        <input className={`add-warehouse__form--input ${this.state.countryValid ? "" : "add-warehouse__error"}`} name="country" type="text" placeholder="Country" defaultValue={this.props.warehouseCountry ? this.props.warehouseCountry: ""}></input>
                         </div>
                         </div>
                         <div className="add-warehouse__form--section-2">
                     <h2 className="add-warehouse__form--title">Contact Details</h2>
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--contact-label"> Contact Name</label>
-                        <input className={`add-warehouse__form--input ${this.state.contactValid ? "" : "add-warehouse__error"}`} name="contact" type="text" placeholder="Contact Name"></input>
+                        <input className={`add-warehouse__form--input ${this.state.contactValid ? "" : "add-warehouse__error"}`} name="contact" type="text" placeholder="Contact Name" defaultValue={this.props.contactName ? this.props.contactName: ""}></input>
                         </div>
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--position-label"> Position</label>
-                        <input className={`add-warehouse__form--input ${this.state.positionValid ? "" : "add-warehouse__error"}`} name="position" type="text" placeholder="Position"></input>
+                        <input className={`add-warehouse__form--input ${this.state.positionValid ? "" : "add-warehouse__error"}`} name="position" type="text" placeholder="Position" defaultValue={this.props.contactPosition ? this.props.contactPosition: ""}></input>
                         </div>
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--phone-label"> Phone Number</label>
-                        <input className={`add-warehouse__form--input ${this.state.phoneNumberValid ? "" : "add-warehouse__error"}`} name="phone" type="text" placeholder="Phone Number"></input>
+                        <input className={`add-warehouse__form--input ${this.state.phoneNumberValid ? "" : "add-warehouse__error"}`} name="phone" type="text" placeholder="Phone Number" defaultValue={this.props.contactPhone ? this.props.contactPhone: ""}></input>
                         </div>
                         <div className="add-warehouse__line">
                         <label className="add-warehouse__form--email-label"> Email</label>
-                        <input className={`add-warehouse__form--input ${this.state.emailValid ? "" : "add-warehouse__error"}`} name="email" type="text" placeholder="Email"></input>
+                        <input className={`add-warehouse__form--input ${this.state.emailValid ? "" : "add-warehouse__error"}`} name="email" type="text" placeholder="Email" defaultValue={this.props.contactEmail ? this.props.contactEmail: ""}></input>
                         </div>
                         </div>
                         </div>
