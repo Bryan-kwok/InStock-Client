@@ -12,7 +12,7 @@ class Warehouses extends Component{
             <Switch>
                 <Route path="/" exact />
                 <Route path='/:warehouseId' exact render={(rProps)=>this.props.inventory && this.props.warehouses && <WarehouseDetails rProps={rProps} inventory={this.props.inventory} warehouses={this.props.warehouses} />} />
-                <Route path='/:warehouseId/edit' render={(<EditWarehouse warehouses={this.props.warehouses} />} />
+                <Route path='/:warehouseId/edit' render={<EditWarehouse warehouses={this.props.warehouses} />} />
             </Switch>
         )
     }

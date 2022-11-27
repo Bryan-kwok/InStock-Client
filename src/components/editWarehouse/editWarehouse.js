@@ -1,7 +1,6 @@
 import react from "react";
 import axios from "axios";
 import WarehouseForm from '../warehouseForm/warehouseForm';
-import Header from '../Header/Header'
 
 
 class editWarehouse extends react.Component {
@@ -15,7 +14,7 @@ class editWarehouse extends react.Component {
     btnText = "Save"
    
     currentWarehouseDetails = (id) => {
-       axios.get (`http://localhost:8080/warehouses/${id}`)
+       axios.get (`https://instock-api.onrender.com/warehouses/${id}`)
        .then((response) => {
            const warehouseDetails = response.data;
            console.log(warehouseDetails)
@@ -38,7 +37,7 @@ class editWarehouse extends react.Component {
         
         const warehouseId = this.props.rProps.match.params.warehouseId;
         this.currentWarehouseDetails(warehouseId)
-        axios.put(`http://localhost:8080/warehouses/${warehouseId}`)
+        axios.put(`https://instock-api.onrender.com/warehouses/${warehouseId}`)
     }
 
     render(){
@@ -46,7 +45,7 @@ class editWarehouse extends react.Component {
         const handlePut = (e) => {
 
             e.preventDefault(e);
-            axios.put(`http://localhost:8080/warehouses/${warehouseId}/edit`,{
+            axios.put(`https://instock-api.onrender.com/warehouses/${warehouseId}/edit`,{
                 name: e.target.name.value,
                 address: e.target.address.value,
                 city: e.target.city.value,

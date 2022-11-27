@@ -11,7 +11,7 @@ class addwarehouse extends react.Component {
         const handlePost = e => {
 
             console.log(e.target)
-            axios.post(`http://localhost:8080/warehouses/addWarehouse`,{
+            axios.post(`https://instock-api.onrender.com/warehouses/addWarehouse`,{
                 name: e.target.name.value,
                 address: e.target.address.value,
                 city: e.target.city.value,

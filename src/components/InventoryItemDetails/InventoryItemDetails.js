@@ -12,7 +12,7 @@ class InventoryItemDetails extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8080/inventory/${this.props.match.params.itemId}`)
+      .get(`https://instock-api.onrender.com/inventory/${this.props.match.params.itemId}`)
       .then((response) => {
         this.setState({
           itemDetail: response.data,
@@ -38,12 +38,12 @@ class InventoryItemDetails extends Component {
               </h1>
               <Link className="link__editButton-mobile" to="/editItem">
                 <button className="header__editButton-mobile">
-                  <img className="header__editButton-icon" src={pencil} />
+                  <img className="header__editButton-icon" src={pencil} alt=""/>
                 </button>
               </Link>
               <Link className="link__editButton-tablet" to="/editItem">
                 <button className="header__editButton-tablet">
-                  <img className="header__editButton-icon" src={pencil} />
+                  <img className="header__editButton-icon" src={pencil} alt=""/>
                   Edit
                 </button>
               </Link>

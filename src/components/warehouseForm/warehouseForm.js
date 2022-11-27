@@ -1,6 +1,5 @@
 import react from "react"
 import "./warehouseForm.scss"
-import axios from "axios"
 import ArrowBack from '../../assets/icons/arrow_back-24px.svg';
 import {Link} from "react-router-dom";
 class warehouse extends react.Component {

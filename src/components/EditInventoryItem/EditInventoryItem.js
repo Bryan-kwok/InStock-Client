@@ -39,7 +39,7 @@ class EditInventoryItem extends Component{
             return alert("Would you kindly, fill in the rest of the form first.")
         }
 
-        axios.post("http://localhost:8080/inventory/editItem",{
+        axios.post("https://instock-api.onrender.com/inventory/editItem",{
             itemName:itemName,
             description:description,
             category:category,

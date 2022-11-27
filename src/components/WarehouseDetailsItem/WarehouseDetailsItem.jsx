@@ -7,7 +7,7 @@ import '../WarehouseDetailsItem/WarehouseDetailsItem.scss'
 
 class WarehouseDetailsitem extends Component {
   render() {
-    const { category, description, id, itemName, quantity, status } =
+    const { category, id, itemName, quantity, status } =
       this.props.item;
     return (
       <>

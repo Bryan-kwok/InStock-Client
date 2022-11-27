@@ -1,7 +1,7 @@
 import Header from "./components/Header/Header";
 import "./App.scss";
 import { Component } from "react";
-import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import WarehouseList from "./components/WarehouseList/WarehouseList";
 import InventoryList from "./components/InventoryList/InventoryList";
 import axios from "axios";
@@ -11,7 +11,6 @@ import WarehouseDetails from "./components/WareHouseDetails/WareHouseDetails";
 import AddNewInventoryItem from "./components/AddNewInventoryItem/AddNewInventoryItem";
 import EditInventoryItem from "./components/EditInventoryItem/EditInventoryItem";
 import InventoryItemDetails from "./components/InventoryItemDetails/InventoryItemDetails";
-import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 import Footer from "./components/footer/footer";
 class App extends Component {
   state = {
@@ -24,7 +23,7 @@ class App extends Component {
 
   loadInventory = () => {
     axios
-      .get("http://localhost:8080/inventory")
+      .get("https://instock-api.onrender.com/inventory")
       .then((response) => {
         this.setState({
           inventory: response.data,
@@ -34,12 +33,12 @@ class App extends Component {
   };
 
   loadSingleWarehouse = () => {
-    axios.get("http://localhost:8080/ware");
+    axios.get("https://instock-api.onrender.com/ware");
   };
 
   loadWarehouses = () => {
     axios
-      .get("http://localhost:8080/warehouses")
+      .get("https://instock-api.onrender.com/warehouses")
       .then((response) => {
         this.setState({
           warehouses: response.data,
@@ -68,7 +67,7 @@ class App extends Component {
   handleWarehouseDelete = () => {
     axios
       .delete(
-        `http://localhost:8080/warehouses/deletewarehouse/${this.state.warehouseToDelete}`
+        `https://instock-api.onrender.com/warehouses/deletewarehouse/${this.state.warehouseToDelete}`
       )
       .then((res) => {
         this.setState({ isModalOpen: false });
@@ -82,7 +81,7 @@ class App extends Component {
     console.log("delete", this.state.inventoryToDelete);
     axios
       .delete(
-        `http://localhost:8080/warehouses/deleteitem/${this.state.inventoryToDelete}`
+        `https://instock-api.onrender.com/warehouses/deleteitem/${this.state.inventoryToDelete}`
       )
       .then((res) => {
         this.setState({ isModalOpen: false });
