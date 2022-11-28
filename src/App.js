@@ -1,7 +1,7 @@
 import Header from "./components/Header/Header";
 import "./App.scss";
 import { Component } from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
 import WarehouseList from "./components/WarehouseList/WarehouseList";
 import InventoryList from "./components/InventoryList/InventoryList";
 import axios from "axios";
@@ -112,6 +112,9 @@ class App extends Component {
       <BrowserRouter>
         <Header />
         <Switch>
+          <Route exact path="/InStock-Client">
+            <Redirect to="/" />
+          </Route>
           <Route
             path="/"
             exact
